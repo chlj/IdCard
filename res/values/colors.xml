@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="province_line_border">#cecece</color>
+    <color name="top_botton_while">#ffffff</color>
+    <color name="selected_middle">#00000000</color>
+</resources>

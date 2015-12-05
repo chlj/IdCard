@@ -2,7 +2,11 @@ package com.example.idcard;
 
 import java.io.Serializable;
 
-
+/**
+ * 
+ * @author wcp
+ *
+ */
 public class AddressItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;

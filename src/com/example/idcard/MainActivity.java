@@ -20,7 +20,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.trinea.android.common.util.RandomUtils;
 import cn.trinea.android.common.util.ResourceUtils;
+import cn.trinea.android.common.util.SdUtils;
+import cn.trinea.android.common.util.ToastUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,12 +67,96 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				shenShiQuDialog(mCurrentShen, mCurrentSi, mCurrentQu);
+				//shenShiQuDialog(mCurrentShen, mCurrentSi, mCurrentQu);
+				//getQu(shenArray);
+//				getCode();
+				//随机生成5个身份证号码
+				for(int i=0;i<5;i++){
+					Log.i("xx" ,IdCardUtils.getIdCard(getRandomCode()));
+				}
+				
 			}
 		});
+		
+		
 
 	}
 
+	
+	/**
+	 * 得到随机的行政编码
+	 * @return
+	 */
+	public String getRandomCode(){
+		List<Qu> ls=getCode();
+		if(ls!=null && ls.size()>0){
+			int m=RandomUtils.getRandom(0, ls.size());
+			return ls.get(m).getId();
+		}
+		else{
+			return "110101"; //东城区
+		}
+	}
+	/**
+	 * 得到所有的行政编码
+	 * @return
+	 */
+	public List<Qu> getCode(){
+		List<Qu> list_qu=new ArrayList<Qu>();
+		try {
+			String strJson = ResourceUtils.getStringFromAssetsFile(
+					MainActivity.this, "code.txt", "UTF-8");
+			Gson gson = new Gson();
+			list_qu = gson.fromJson(strJson, new TypeToken<List<Qu>>() {
+			}.getType());
+		} catch (Exception e) {
+			Log.i("xx", "error=" + e.toString());
+		}
+		//ToastUtils.showLongToast(getApplicationContext(), ""+list_qu.size());
+		return list_qu;
+	}
+	
+	private void getQu(List<Shen> shenArray ){
+		 List<Qu> ls=new ArrayList<Qu>();
+		if(shenArray!=null &&  shenArray.size()>0 ){
+			for(int i=0,len= shenArray.size();i<len;i++){
+				List<Shi> ls_shi = shenArray.get(i).getShiArray();
+				if(ls_shi!=null && ls_shi.size()>0){
+					for(int m=0,lens=ls_shi.size();m<lens;m++){
+						List<Qu> ls_qu= ls_shi.get(m).getQuArray();
+						
+						if(ls_qu!=null && ls_qu.size()>0){
+							ls.addAll(ls_qu);
+						}
+						else{
+							Qu qu=new Qu();
+							qu.setId(ls_shi.get(m).getId());
+							qu.setName(ls_shi.get(m).getName());
+							ls.add(qu);
+						}
+					}
+				}
+				else{
+					Qu qu=new Qu();
+					qu.setId(shenArray.get(i).getId());
+					qu.setName(shenArray.get(i).getName());
+					ls.add(qu);
+				}
+			}
+		}
+		if(ls!=null && ls.size()>0){
+			Gson gson =new Gson();
+		    String str=	gson.toJson(ls);
+		    if(SdUtils.StringSaveSD(str, "code.txt", "wcp"))
+		    {
+		    	ToastUtils.showLongToast(getApplicationContext(), "ok");
+		    }
+		    else{
+		    	ToastUtils.showLongToast(getApplicationContext(), "erro");
+		    }
+		}
+		
+	}
 	private void shenShiQuDialog(final String shen, final String shi,
 			final String qu) {
 		View view = LayoutInflater.from(this).inflate(

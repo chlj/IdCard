@@ -143,8 +143,9 @@ public class IdCardUtils {
 	}
 	
 	/**
-	 * 性别随机
+	 * 行政编码
 	 * @param Code
+	 * 性别随机
 	 * @return
 	 */
 	public static String getIdCard(String Code){

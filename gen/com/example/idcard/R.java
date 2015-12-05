@@ -28,25 +28,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int wheel_bg=0x7f020001;
-        public static final int wheel_val=0x7f020002;
+        public static final int radio_checked=0x7f020001;
+        public static final int radio_unchecked=0x7f020002;
+        public static final int wheel_bg=0x7f020003;
+        public static final int wheel_val=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int qu=0x7f090007;
-        public static final int shen=0x7f090005;
-        public static final int shi=0x7f090006;
+        public static final int action_settings=0x7f09000d;
+        public static final int btn1=0x7f090005;
+        public static final int idcard_list=0x7f090006;
+        public static final int qu=0x7f09000b;
+        public static final int shen=0x7f090009;
+        public static final int shi=0x7f09000a;
+        public static final int tab_bar=0x7f090007;
         public static final int test=0x7f090000;
-        public static final int text=0x7f090008;
+        public static final int text=0x7f09000c;
         public static final int text1=0x7f090001;
         public static final int text2=0x7f090002;
         public static final int text3=0x7f090003;
         public static final int text4=0x7f090004;
+        public static final int title_bar=0x7f090008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int shen_shi_qu_dialog=0x7f030001;
-        public static final int wheel_text=0x7f030002;
+        public static final int idcard_main=0x7f030001;
+        public static final int shen_shi_qu_dialog=0x7f030002;
+        public static final int wheel_text=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;

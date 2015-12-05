@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E9E9E9"
+    android:orientation="vertical" >
+
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生成"
+        android:id="@+id/btn1"
+        />
+    <com.example.idcard.BounceListView
+        android:id="@+id/idcard_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tab_bar"
+        android:layout_below="@+id/title_bar"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:cacheColorHint="#00000000"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+</LinearLayout>
